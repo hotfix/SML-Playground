@@ -16,6 +16,8 @@ val twos = fn : int -> int
 val numNegative = fn : int list -> int
 val absList = fn : (int * int) list -> (int * int) list
 val split = fn : int list -> (int * int) list
+
+TODO:
 val range = fn : int * int -> int list
 val hailstone = fn : int -> int list
 val isSorted = fn : int list -> bool
@@ -51,10 +53,35 @@ repeat ("abc",10);
 (**************************************************)
 
 (*twos??*)	
+fun twos 0 = 0
+|	twos n = if (n mod 2 = 0) then 1 + twos(n div 2) else 0;
 
+twos 30;
+twos 120;
+twos 12;
+twos 8;
+twos 16;
 (**************************************************)
 
 fun numNegative [] = 0
-|   numNegative (x::l)  = if x < 0 then 1 
+|   numNegative (x::l)  = if x >= 0 then numNegative l else 1 + numNegative l; 
 
-(**************************************************)
+(**************************************************) 
+
+fun absList [] = []
+|	absList ((x,y)::l) = (abs(x),abs(y))::absList l;
+
+absList;
+
+(**************************************************) 
+
+
+fun split []     = []
+|	split (x::l) =  (if x > 0 then (x div 2, x - (x div 2)) 
+					else (0,0)) :: split(l)
+;
+split([5, 6, 8, 17, 93, 0]);
+
+(**************************************************) 
+
+(**************************************************) 
